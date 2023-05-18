@@ -17,7 +17,10 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { PersistGate } from "redux-persist/integration/react";
+//import for deploy
+import {disableReactDevTools} from "@fvilers/disable-react-devtools"
 
+if(process.env.NODE_ENV === 'production') disableReactDevTools();
 
 
 
@@ -33,7 +36,8 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+  }),
+  devTools: false
 });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
